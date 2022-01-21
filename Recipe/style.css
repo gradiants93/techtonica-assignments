@@ -5,10 +5,12 @@ Constrain the description to the width of the image
 Make the image and ingredients appear on the left
 Make the instructions appear on the right
 */
-
+* {
+    background-color:burlywood;
+}
 p, h1, h2 {
     font-family: fantasy;
-    color: peru;
+    color:maroon;
 }
 .top {
     width: 600px;
