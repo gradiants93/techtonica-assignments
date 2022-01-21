@@ -1,0 +1,15 @@
+/* 
+Change the background color of your webpage
+Change the font and font color of your headings and paragraphs
+Constrain the description to the width of the image
+Make the image and ingredients appear on the left
+Make the instructions appear on the right
+*/
+
+p, h1, h2 {
+    font-family: fantasy;
+    color: peru;
+}
+.top {
+    width: 600px;
+}
