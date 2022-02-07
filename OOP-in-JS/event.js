@@ -11,3 +11,11 @@ const eventObj3 = new Event('Jenny Lewis', 'On the line tour 2019');
 const eventArray = new Array();
 eventArray.push(eventObj1, eventObj2, eventObj3);
 console.log(eventArray)
+
+document.addEventListener('DOMContentLoaded', () => {
+    let html = '';
+    eventArray.forEach((item) => {
+        html += `<li>${item.name} - ${item.description}`;
+    });
+    document.querySelector('#event').innerHTML = html;
+});
