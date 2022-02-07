@@ -5,6 +5,15 @@ class Event {
       this.availableTickets = [];
     }
 }
+class TicketType {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+    addAvailableTickets(name, price) {
+        this.addAvailableTickets.push(name, price);
+    }
+}
 const eventObj1 = new Event ('KLOS Golden Gala', 'An evening with hollywood vampires');
 const eventObj2 = new Event('Skillet & Sevendust', 'Victorious war tour');
 const eventObj3 = new Event('Jenny Lewis', 'On the line tour 2019');
@@ -19,3 +28,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelector('#event').innerHTML = html;
 });
+
