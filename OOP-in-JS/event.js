@@ -5,7 +5,14 @@ class Event {
       this.availableTickets = [];
     }
     addAvailableTickets(name, price) {
-        this.availableTickets.push(name, price);
+        this.availableTickets.push([name, price]);
+    }
+    allTickets() {
+        let holder = "All tickets:"
+        for (let i = 0; i < this.availableTickets.length; i++) {
+            holder += ` ${i+1}. ${this.availableTickets[i][0]} ($${this.availableTickets[i][1]})`;
+        }
+        return holder;
     }
 }
 class TicketType {
@@ -21,14 +28,6 @@ let eventArray = new Array();
 eventArray.push(eventObj1, eventObj2, eventObj3);
 console.log(eventArray)
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     let html = '';
-//     eventArray.forEach((item) => {
-//         html += `<li>${item.name} - ${item.description}`;
-//     });
-//     document.querySelector('#event').innerHTML = html;
-// });
-
 eventObj1.addAvailableTickets("human", 299);
 eventObj1.addAvailableTickets("vampire", 99);
 eventObj2.addAvailableTickets("General Admission", 25);
@@ -40,3 +39,12 @@ eventObj3.addAvailableTickets("Balcony", 100);
 console.log(eventObj1.availableTickets);
 console.log(eventObj2.availableTickets);
 console.log(eventObj3.availableTickets);
+console.log(eventObj1.allTickets())
+
+document.addEventListener('DOMContentLoaded', () => {
+    let html = '';
+    eventArray.forEach((item) => {
+        html += `<li>${item.name} - ${item.description} - ${item.allTickets()}`;
+    });
+    document.querySelector('#event').innerHTML = html;
+});
