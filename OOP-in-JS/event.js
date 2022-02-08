@@ -1,3 +1,19 @@
+let eventSlot = document.getElementById('event');
+
+let interval = setInterval(function() {
+    if(document.readyState === 'complete') {
+        clearInterval(interval);
+       // done();
+
+        let html = '';
+        console.log("at beginning ", eventArray)
+        eventArray.forEach((item) => {
+            html += `<li>${item.name} - ${item.description} - ${item.allTickets()}`;
+        });
+        document.querySelector('#event').innerHTML = html;
+    }    
+}, 100);
+
 class Event {
     constructor(name, description) {
       this.name = name;
@@ -59,12 +75,6 @@ console.log(eventObj2.availableTickets);
 console.log(eventObj3.availableTickets);
 console.log(eventObj1.allTickets())
 
-console.log(eventObj1.searchTickets(98, 300))
+//console.log(eventObj1.searchTickets(98, 300))
 
-let eventDOM = document.getElementById('event').addEventListener('DOMContentLoaded', () => {
-    let html = '';
-    eventArray.forEach((item) => {
-        html += `<li>${item.name} - ${item.description} - ${item.allTickets()}`;
-    });
-    document.querySelector('#event').innerHTML = html;
-});
+
