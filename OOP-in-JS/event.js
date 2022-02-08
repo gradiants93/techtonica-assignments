@@ -8,11 +8,27 @@ class Event {
         this.availableTickets.push([name, price]);
     }
     allTickets() {
-        let holder = "All tickets:"
+        let holder = "All tickets:";
         for (let i = 0; i < this.availableTickets.length; i++) {
             holder += ` ${i+1}. ${this.availableTickets[i][0]} ($${this.availableTickets[i][1]})`;
-        }
+        };
         return holder;
+    }
+    searchTickets(minPrice, maxPrice) {
+        let holder = "Eligible tickets:";
+        let hasThings;
+        for (let i = 0; i < this.availableTickets.length; i++) {
+            let count = 1;
+            if ((this.availableTickets[i][1]> minPrice) && (this.availableTickets[i][1]< maxPrice)) {
+                holder += ` ${count}. ${this.availableTickets[i][0]} ($${this.availableTickets[i][1]})`;
+                count++;
+                hasThings++;
+            }
+        }
+        if (hasThings.length > 0) {
+            return holder;
+        }
+        return "No tickets available";
     }
 }
 class TicketType {
@@ -41,10 +57,12 @@ console.log(eventObj2.availableTickets);
 console.log(eventObj3.availableTickets);
 console.log(eventObj1.allTickets())
 
-document.addEventListener('DOMContentLoaded', () => {
-    let html = '';
-    eventArray.forEach((item) => {
-        html += `<li>${item.name} - ${item.description} - ${item.allTickets()}`;
-    });
-    document.querySelector('#event').innerHTML = html;
-});
+console.log(eventObj1.searchTickets(98, 300))
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     let html = '';
+//     eventArray.forEach((item) => {
+//         html += `<li>${item.name} - ${item.description} - ${item.allTickets()}`;
+//     });
+//     document.querySelector('#event').innerHTML = html;
+// });
