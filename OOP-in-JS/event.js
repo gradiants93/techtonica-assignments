@@ -30,7 +30,6 @@ class Event {
         };
         return holder;
     }
-    // Not quite working right now, it's returning just no tickets so I think there is a syntax error that is there
 
     searchTickets(minPrice, maxPrice) {
         let holder = "Eligible tickets:";
