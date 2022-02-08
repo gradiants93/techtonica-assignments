@@ -1,18 +1,18 @@
-// let eventSlot = document.getElementById('event');
+let eventSlot = document.getElementById('event');
 
-// let interval = setInterval(function() {
-//     if(document.readyState === 'complete') {
-//         clearInterval(interval);
-//        // done();
+let interval = setInterval(function() {
+    if(document.readyState === 'complete') {
+        clearInterval(interval);
+       // done();
 
-//         let html = '';
-//         console.log("at beginning ", eventArray)
-//         eventArray.forEach((item) => {
-//             html += `<li>${item.name} - ${item.description} - ${item.allTickets()}`;
-//         });
-//         document.querySelector('#event').innerHTML = html;
-//     }    
-// }, 100);
+        let html = '';
+        console.log("at beginning ", eventArray)
+        eventArray.forEach((item) => {
+            html += `<li>${item.name} - ${item.description} - ${item.searchTickets(0, 100)}`;
+        });
+        document.querySelector('#event').innerHTML = html;
+    }    
+}, 100);
 
 class Event {
     constructor(name, description) {
@@ -82,3 +82,8 @@ eventObj3.addAvailableTickets("Balcony", 100);
 // console.log(eventObj1.searchTickets(100, 298)) // No tickets available
 // console.log(eventObj1.searchTickets(99, 298)) // Eligible tickets: 1. vampire ($99)
 // console.log(eventObj1.searchTickets(100, 299)) // Eligible tickets: 1. human ($299)
+// console.log(eventObj1.searchTickets(-99, 0)) // No tickets available
+// console.log(eventObj1.searchTickets(99, 99)) // Eligible tickets: 1. vampire ($99)
+// eventArray.forEach((item) => {
+//     console.log(`${item.name} - ${item.description} - ${item.searchTickets(0, 100)}`);
+// });
