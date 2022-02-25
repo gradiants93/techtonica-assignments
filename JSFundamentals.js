@@ -92,3 +92,5 @@ function minsFromMidnight() {
 }
 
 minsFromMidnight();
+
+//See my comments in my pull request
