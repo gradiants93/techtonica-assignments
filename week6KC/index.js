@@ -13,6 +13,10 @@ app.get('/contactme', function(req, res) {
     res.sendFile(path.join(__dirname, '/contactme.html'))
 });
 
+app.get('*', function(req, res){
+    res.status(404).sendFile(path.join(__dirname, '/404.html'));
+});
+
 app.listen(port, function() {
     console.log(`Listening on post ${port}`);
 });
