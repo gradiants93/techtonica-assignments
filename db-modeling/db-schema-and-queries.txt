@@ -1,0 +1,50 @@
+﻿CREATE DOMAIN username_restriction AS TEXT
+CHECK(
+   VALUE !~* '(\s|\?|\\)+'
+);
+
+
+CREATE TABLE users (
+  username username_restriction NOT NULL PRIMARY KEY,
+  email TEXT NOT NULL,
+  join_date DATE
+);
+
+
+CREATE TABLE photos (
+  id SERIAL NOT NULL PRIMARY KEY,
+  url TEXT NOT NULL,
+  creator_username_fk TEXT REFERENCES users(username),
+  date_added DATE,
+  times_liked INT
+);
+
+
+CREATE TABLE user_liked_photos (
+  id SERIAL NOT NULL PRIMARY KEY,
+  username_fk TEXT REFERENCES users(username),
+  Photo_id_fk INT REFERENCES photos(id),
+  date_liked DATE, 
+  is_liked BOOL
+);
+
+
+INSERT INTO users (username, email, join_date) VALUES ('usernx','blarh', '2001-01-01');
+INSERT INTO users VALUES ('userdfs','rhfd', '2001-01-01');
+INSERT INTO users VALUES ('user123','sdfsdfd', '2001-01-01');
+
+
+INSERT INTO photos VALUES (1, 'https://preview.redd.it/1xhqhibal0l81.jpg?width=640&crop=smart&auto=webp&s=7cafd19b42a010bf841fdcf9e3f2477016042df5','userdfs', CURRENT_DATE);
+INSERT INTO photos VALUES (2, 'https://preview.redd.it/swp8b74q8zk81.jpg?width=640&crop=smart&auto=webp&s=6b06140c77c007b6bc62f0df026d2b14db12da56','user123', CURRENT_DATE);
+INSERT INTO photos VALUES (3, 'https://preview.redd.it/j5978riv67o71.jpg?width=640&crop=smart&auto=webp&s=aa30f1779d655c0942f94d5760f027f5daf66e28','user123', CURRENT_DATE);
+
+
+INSERT INTO user_liked_photos VALUES (1,'user123',1, CURRENT_DATE, true);
+INSERT INTO user_liked_photos VALUES (2,'userdfs',1, CURRENT_DATE, true);
+INSERT INTO user_liked_photos VALUES (3,'usernx',1, CURRENT_DATE, true);
+INSERT INTO user_liked_photos VALUES (4,'user123',2, CURRENT_DATE, true);
+
+
+SELECT * FROM photos WHERE creator_username_fk = 'user123';
+SELECT url FROM photos JOIN user_liked_photos ON photos.id=photo_id_fk WHERE username_fk = 'user123';
+SELECT username_fk FROM user_liked_photos WHERE photo_id_fk =1;
